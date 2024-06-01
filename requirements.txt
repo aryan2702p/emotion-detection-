@@ -3,4 +3,3 @@ keras
 streamlit
 numpy
 tensorflow
-cv2
