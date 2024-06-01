@@ -10,7 +10,9 @@ try:
     classifier = load_model('model.h5')
     emotion_labels = ['Angry', 'Disgust', 'Fear', 'Happy', 'Neutral', 'Sad', 'Surprise']
 except Exception as e:
-    st.write(f"Error loading models: {e}")
+    #st.write(f"Error loading models: {e}")
+    st.session_state.run = False
+    st.experimental_rerun()
 
 # Function to detect and predict emotion
 def detect_emotion(frame):
@@ -51,8 +53,13 @@ def run_webcam():
     cap.release()
 
 # Streamlit app
+
+
 st.title("Real-time Emotion Detection")
 st.write("This application uses a pre-trained model to detect emotions from a live webcam feed.")
+st.write("Toggle the checkbox below to start or stop the detection.")
+
+
 
 # Initialize the checkbox state
 if 'run' not in st.session_state:
@@ -67,3 +74,6 @@ while True:
     else:
         st.session_state.run = False
         break
+
+st.markdown("<hr>", unsafe_allow_html=True)
+st.write("Made by Aryan Patel")
